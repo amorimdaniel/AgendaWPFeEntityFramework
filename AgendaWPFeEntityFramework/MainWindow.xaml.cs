@@ -20,9 +20,24 @@ namespace AgendaWPFeEntityFramework
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string operacao;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btSalvar_Click(object sender, RoutedEventArgs e)
+        {
+            contato contato = new contato();
+            contato.nome = txtNome.Text;
+            contato.email = txtEmail.Text;
+            contato.telefone = txtTelefone.Text;
+
+            using (agendaEntities ctx = new agendaEntities())
+            {
+                ctx.contatos.Add(contato);
+                ctx.SaveChanges();
+            }
         }
     }
 }
