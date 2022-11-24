@@ -72,6 +72,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="contato.cs">
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -82,6 +85,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +133,12 @@
     <Content Include="ModelData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelData.Context.cs</LastGenOutput>
+      <DependentUpon>ModelData.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelData.edmx</DependentUpon>
+      <LastGenOutput>ModelData.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
