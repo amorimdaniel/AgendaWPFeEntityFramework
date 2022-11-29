@@ -23,7 +23,7 @@
 
         <Label Grid.ColumnSpan="2" Content="Telefone" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtTelefone" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774"/>
-        <DataGrid x:Name="dgDados" HorizontalAlignment="Left" Height="196" Margin="9,302,0,0" VerticalAlignment="Top" Width="774" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="dgDados" IsReadOnly="True" HorizontalAlignment="Left" Height="196" Margin="9,302,0,0" VerticalAlignment="Top" Width="774" Grid.ColumnSpan="2"/>
 
         <Button x:Name="btInserir" Grid.ColumnSpan="2" Content="Inserir" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Width="75" Click="btInserir_Click"/>
         <Button x:Name="btExcluir" Grid.ColumnSpan="2" Content="Excluir" HorizontalAlignment="Left" Margin="230,265,0,0" VerticalAlignment="Top" Width="75"/>

@@ -87,6 +87,10 @@ namespace AgendaWPFeEntityFramework
             {
                 btSalvar.IsEnabled = true;
                 btCancelar.IsEnabled = true;
+            }if (opcao == 3)
+            {
+                btAlterar.IsEnabled = true;
+                btExcluir.IsEnabled = true;
             }
         }
 
