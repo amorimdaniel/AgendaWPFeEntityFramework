@@ -108,5 +108,64 @@ namespace AgendaWPFeEntityFramework
             alterarBotoes(1);
             limparCampos();
         }
+
+        private void btLocalizar_Click(object sender, RoutedEventArgs e)
+        {
+            if(txtID.Text.Trim().Count() > 0)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(txtID.Text);
+                    using (agendaEntities ctx = new agendaEntities())
+                    {
+                        contato c = ctx.contatos.Find(id);
+                        dgDados.ItemsSource = new contato[1] { c };
+                    }
+                }
+                catch { }
+            }
+            if(txtNome.Text.Trim().Count() > 0)
+            {
+                try
+                {
+                    using (agendaEntities ctx = new agendaEntities())
+                    {
+                        var consulta = from c in ctx.contatos
+                                where c.nome.Contains(txtNome.Text)
+                                select c;
+                        dgDados.ItemsSource = consulta.ToList();
+                    }
+                }
+                catch { }
+            }
+            if (txtEmail.Text.Trim().Count() > 0)
+            {
+                try
+                {
+                    using (agendaEntities ctx = new agendaEntities())
+                    {
+                        var consulta = from c in ctx.contatos
+                                       where c.email.Contains(txtEmail.Text)
+                                       select c;
+                        dgDados.ItemsSource = consulta.ToList();
+                    }
+                }
+                catch { }
+            }
+            if (txtTelefone.Text.Trim().Count() > 0)
+            {
+                try
+                {
+                    using (agendaEntities ctx = new agendaEntities())
+                    {
+                        var consulta = from c in ctx.contatos
+                                       where c.telefone.Contains(txtTelefone.Text)
+                                       select c;
+                        dgDados.ItemsSource = consulta.ToList();
+                    }
+                }
+                catch { }
+            }
+        }
     }
 }

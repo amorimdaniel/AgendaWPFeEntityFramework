@@ -28,7 +28,7 @@
         <Button x:Name="btInserir" Grid.ColumnSpan="2" Content="Inserir" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Width="75" Click="btInserir_Click"/>
         <Button x:Name="btExcluir" Grid.ColumnSpan="2" Content="Excluir" HorizontalAlignment="Left" Margin="230,265,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btAlterar" Grid.ColumnSpan="2" Content="Alterar" HorizontalAlignment="Left" Margin="120,265,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btLocalizar" Grid.ColumnSpan="2" Content="Localizar" HorizontalAlignment="Left" Margin="340,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btLocalizar" Grid.ColumnSpan="2" Content="Localizar" HorizontalAlignment="Left" Margin="340,265,0,0" VerticalAlignment="Top" Width="75" Click="btLocalizar_Click"/>
         <Button x:Name="btSalvar" Grid.ColumnSpan="2" Content="Salvar" HorizontalAlignment="Left" Margin="450,265,0,0" VerticalAlignment="Top" Width="75" Click="btSalvar_Click"/>
         <Button x:Name="btCancelar" Grid.ColumnSpan="2" Content="Cancelar" HorizontalAlignment="Left" Margin="560,265,0,0" VerticalAlignment="Top" Width="75" Click="btCancelar_Click"/>
     </Grid>
