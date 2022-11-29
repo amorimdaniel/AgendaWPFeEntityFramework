@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AgendaWPFeEntityFramework"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -23,13 +23,14 @@
 
         <Label Grid.ColumnSpan="2" Content="Telefone" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtTelefone" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774"/>
-        <DataGrid Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="196" Margin="10,364,0,0" VerticalAlignment="Top" Width="774"/>
-        
-        <Button x:Name="btInserir" Grid.ColumnSpan="2" Content="Inserir" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid x:Name="dgDados" HorizontalAlignment="Left" Height="196" Margin="9,302,0,0" VerticalAlignment="Top" Width="774" Grid.ColumnSpan="2"/>
+
+        <Button x:Name="btInserir" Grid.ColumnSpan="2" Content="Inserir" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Width="75" Click="btInserir_Click"/>
         <Button x:Name="btExcluir" Grid.ColumnSpan="2" Content="Excluir" HorizontalAlignment="Left" Margin="230,265,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btAlterar" Grid.ColumnSpan="2" Content="Alterar" HorizontalAlignment="Left" Margin="120,265,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btLocalizar" Grid.ColumnSpan="2" Content="Localizar" HorizontalAlignment="Left" Margin="340,265,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btSalvar" Grid.ColumnSpan="2" Content="Salvar" HorizontalAlignment="Left" Margin="450,265,0,0" VerticalAlignment="Top" Width="75" Click="btSalvar_Click"/>
-        <Button x:Name="btCancelar" Grid.ColumnSpan="2" Content="Cancelar" HorizontalAlignment="Left" Margin="560,265,0,0" VerticalAlignment="Top" Width="75"/>    </Grid>
+        <Button x:Name="btCancelar" Grid.ColumnSpan="2" Content="Cancelar" HorizontalAlignment="Left" Margin="560,265,0,0" VerticalAlignment="Top" Width="75" Click="btCancelar_Click"/>
+    </Grid>
 
 </Window>
