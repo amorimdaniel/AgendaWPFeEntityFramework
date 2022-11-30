@@ -28,17 +28,31 @@ namespace AgendaWPFeEntityFramework
 
         private void btSalvar_Click(object sender, RoutedEventArgs e)
         {
-            contato contato = new contato();
-            contato.nome = txtNome.Text;
-            contato.email = txtEmail.Text;
-            contato.telefone = txtTelefone.Text;
-
-            if(operacao == "inserir")
+            if (operacao == "inserir")
             {
+                contato contato = new contato();
+                contato.nome = txtNome.Text;
+                contato.email = txtEmail.Text;
+                contato.telefone = txtTelefone.Text;
+
                 using (agendaEntities ctx = new agendaEntities())
                 {
                     ctx.contatos.Add(contato);
                     ctx.SaveChanges();
+                }
+            }
+            if (operacao == "alterar")
+            {
+                using (agendaEntities ctx = new agendaEntities())
+                {
+                    contato c = ctx.contatos.Find(Convert.ToInt32(txtID.Text));
+                    if (c != null)
+                    {
+                        c.nome = txtNome.Text;
+                        c.email = txtEmail.Text;
+                        c.telefone = txtTelefone.Text;
+                        ctx.SaveChanges();
+                    }
                 }
             }
 
@@ -52,24 +66,29 @@ namespace AgendaWPFeEntityFramework
         {
             operacao = "inserir";
             alterarBotoes(2);
+            limparCampos();
+            txtID.IsEnabled = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             listarContatos();
             alterarBotoes(1);
-            txtID.Text = "";
-            txtID.IsEnabled = false;
+
         }
 
         private void listarContatos()
         {
-            agendaEntities ctx = new agendaEntities();
-            var consulta = ctx.contatos;
-            dgDados.ItemsSource = consulta.ToList();
+            using (agendaEntities ctx = new agendaEntities())
+            {
+                int a = ctx.contatos.Count();
+                lbQtdContatos.Content = "Número de contatos: " + a.ToString();
+                var consulta = ctx.contatos;
+                dgDados.ItemsSource = consulta.ToList();
+            }
         }
-        
-        private void alterarBotoes (int opcao)
+
+        private void alterarBotoes(int opcao)
         {
             btAlterar.IsEnabled = false;
             btInserir.IsEnabled = false;
@@ -87,7 +106,8 @@ namespace AgendaWPFeEntityFramework
             {
                 btSalvar.IsEnabled = true;
                 btCancelar.IsEnabled = true;
-            }if (opcao == 3)
+            }
+            if (opcao == 3)
             {
                 btAlterar.IsEnabled = true;
                 btExcluir.IsEnabled = true;
@@ -111,7 +131,7 @@ namespace AgendaWPFeEntityFramework
 
         private void btLocalizar_Click(object sender, RoutedEventArgs e)
         {
-            if(txtID.Text.Trim().Count() > 0)
+            if (txtID.Text.Trim().Count() > 0)
             {
                 try
                 {
@@ -120,20 +140,27 @@ namespace AgendaWPFeEntityFramework
                     {
                         contato c = ctx.contatos.Find(id);
                         dgDados.ItemsSource = new contato[1] { c };
+                        if (c == null)
+                        {
+                            lbQtdContatos.Content = "Número de contatos: 0";
+                        }
+                        else { lbQtdContatos.Content = "Número de contatos: 1"; }
                     }
                 }
                 catch { }
             }
-            if(txtNome.Text.Trim().Count() > 0)
+            if (txtNome.Text.Trim().Count() > 0)
             {
                 try
                 {
                     using (agendaEntities ctx = new agendaEntities())
                     {
                         var consulta = from c in ctx.contatos
-                                where c.nome.Contains(txtNome.Text)
-                                select c;
+                                       where c.nome.Contains(txtNome.Text)
+                                       select c;
                         dgDados.ItemsSource = consulta.ToList();
+                        int a = consulta.Count();
+                        lbQtdContatos.Content = "Número de contatos: " + a.ToString();
                     }
                 }
                 catch { }
@@ -148,6 +175,8 @@ namespace AgendaWPFeEntityFramework
                                        where c.email.Contains(txtEmail.Text)
                                        select c;
                         dgDados.ItemsSource = consulta.ToList();
+                        int a = consulta.Count();
+                        lbQtdContatos.Content = "Número de contatos: " + a.ToString();
                     }
                 }
                 catch { }
@@ -162,10 +191,32 @@ namespace AgendaWPFeEntityFramework
                                        where c.telefone.Contains(txtTelefone.Text)
                                        select c;
                         dgDados.ItemsSource = consulta.ToList();
+                        int a = consulta.Count();
+                        lbQtdContatos.Content = "Número de contatos: " + a.ToString();
                     }
                 }
                 catch { }
             }
+        }
+
+        private void dgDados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (dgDados.SelectedIndex >= 0)
+            {
+                contato c = (contato)dgDados.Items[dgDados.SelectedIndex];
+                txtNome.Text = c.nome;
+                txtID.Text = c.id.ToString();
+                txtEmail.Text = c.email;
+                txtTelefone.Text = c.telefone;
+                alterarBotoes(3);
+            }
+        }
+
+        private void btAlterar_Click(object sender, RoutedEventArgs e)
+        {
+            operacao = "alterar";
+            alterarBotoes(2);
+            txtID.IsEnabled = false;
         }
     }
 }
